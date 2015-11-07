@@ -22,7 +22,7 @@ def path_is_rom(console, path):
   If a list of extensions is supplied for this console, we check if the path has a valid extension
   If no extensions are defined for this console, we just accept any file
   """
-  if console.extensions == "":
+  if console.extensions == "" and os.path.isfile(path):
     return True
 
   # Normalize the extension based on the things we validly ignore.
