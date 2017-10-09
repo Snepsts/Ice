@@ -30,3 +30,8 @@
 # [SNES9X-GTK]
 # location=/usr/bin/snes9x-gtk
 # command=%l %r
+
+[higan]
+location=/usr/bin/higan
+command=%l --fullscreen %r
+

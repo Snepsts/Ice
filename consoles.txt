@@ -52,12 +52,12 @@
 # images directory=C:\Games\Super Nintendo\Images
 #
 [Nintendo Entertainment System]
-nickname=NES
-emulator=
+nickname=Famicom
+emulator=higan
 
 [Super Nintendo]
-nickname=SNES
-emulator=
+nickname=Super Famicom
+emulator=higan
 
 [Nintendo 64]
 nickname=N64
