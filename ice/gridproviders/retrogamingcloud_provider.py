@@ -16,6 +16,19 @@ import grid_image_provider
 
 from ice.logs import logger
 
+def fix_broken_rom_name(rom_name):
+	# This function is to fix '&', '+' being treated incorrectly according to retrogaming.cloud
+	new_name = ""
+	for i in rom_name:
+		if i == '&':
+			new_name += "%26"
+		elif i == '+':
+			new_name += "%2B"
+		else:
+			new_name += i
+
+	return new_name
+
 class RetroGamingCloudProvider(grid_image_provider.GridImageProvider):
 
 	@staticmethod
@@ -42,7 +55,7 @@ class RetroGamingCloudProvider(grid_image_provider.GridImageProvider):
 
 	def rgc_search(self, rom):
 		api_root = self.api_url()
-		url = "%s?name=%s" % (api_root, rom.name)
+		url = "%s?name=%s" % (api_root, fix_broken_rom_name(rom.name))
 		return self.rgc_get_result(url)
 
 	def rgc_get_media(self, game_id):
@@ -52,7 +65,8 @@ class RetroGamingCloudProvider(grid_image_provider.GridImageProvider):
 
 	def image_for_rom(self, rom):
 		game_results = self.rgc_search(rom)
-		game_by_console = [game for game in game_results if game["platform"]["key"] == rom.console.shortname]
+		# We add in the Famicom and Super Famicom checks because fucking byuu for some ungodly reason likes them more
+		game_by_console = [game for game in game_results if game["platform"]["key"] == rom.console.shortname or (game["platform"]["key"] == "NES" and rom.console.shortname == "Famicom") or (game["platform"]["key"] == "SNES" and rom.console.shortname == "Super Famicom")]
 		game_verify_by_name = next((game for game in game_by_console if game["name"] == rom.name), None)
 		if game_verify_by_name is None:
 			return None
