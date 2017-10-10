@@ -8,8 +8,9 @@ This is a modded ice repo for me and my current "Steam Machine" project I am wor
 
 #### Current Console/Emulator Matchup
 
-Nintendo Entertainment System: Higan v098
-Super Nintendo Entertainment System: Higan v098
+- Nintendo Entertainment System: Higan v098
+
+- Super Nintendo Entertainment System: Higan v098
 
 Higan was acquired through Debian's packaging system.
 
@@ -25,7 +26,7 @@ All of my code is licensed under MIT.
 
 ### Getting Started
 
-Ice's official documentation is available at [Getting Started.](http://scottrice.github.io/Ice/getting-started/) 
+Ice's official documentation is available at [Getting Started.](http://scottrice.github.io/Ice/getting-started/)
 
 ### Running the Source
 
